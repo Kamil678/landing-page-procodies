@@ -1,6 +1,6 @@
 <template>
   <div class="form-container">
-    <p>Enter details</p>
+    <h3>Enter details</h3>
     <form>
       <div class="name-container">
         <input
@@ -65,8 +65,6 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
-
 <style lang="scss">
 .form-container {
   border: 1px solid #dbdbdb;
@@ -77,11 +75,18 @@
   flex-direction: column;
   gap: 24px 0;
 
-  p {
+  h3 {
+    font-size: 28px;
+    line-height: 33px;
     font-size: 32px;
     font-weight: 500;
     line-height: 37.5px;
     text-align: center;
+
+    @media (min-width: 992px) {
+      font-size: 32px;
+      line-height: 37.5px;
+    }
   }
 
   form {
@@ -94,7 +99,12 @@
     .adress-container {
       display: flex;
       align-items: center;
-      gap: 0 16px;
+      flex-direction: column;
+      gap: 16px;
+
+      @media (min-width: 992px) {
+        flex-direction: row;
+      }
     }
 
     input {
@@ -126,6 +136,7 @@
   .form-footer {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 0 16px;

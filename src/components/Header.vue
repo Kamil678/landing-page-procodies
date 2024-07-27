@@ -1,9 +1,9 @@
 <template>
   <header>
     <CarouselImage />
-    <div>
+    <div class="header-content">
       <h1>Chance to win a StockX Mystery Box today!</h1>
-      <h4>Unleash the Excitement of Mystery Electronics</h4>
+      <p>Unleash the Excitement of Mystery Electronics</p>
       <HeaderForm />
     </div>
   </header>
@@ -17,21 +17,44 @@ import HeaderForm from "./HeaderForm.vue";
 <style lang="scss">
 header {
   display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px 21px;
   align-items: center;
-  gap: 0 16px;
   color: #293632;
 
-  h1 {
-    font-size: 52px;
-    line-height: 55px;
-    font-weight: 800;
+  @media (min-width: 992px) {
+    flex-direction: row;
   }
 
-  h4 {
-    font-size: 22px;
-    line-height: 25.78px;
-    font-weight: 400;
-    margin: 8px 0 23px 0;
+  .header-content {
+    h1 {
+      font-size: 40px;
+      line-height: 42px;
+      font-weight: 800;
+      text-align: center;
+
+      @media (min-width: 992px) {
+        font-size: 52px;
+        line-height: 55px;
+        text-align: left;
+      }
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 20px;
+      font-weight: 400;
+      text-align: center;
+      margin: 8px 0 23px 0;
+
+      @media (min-width: 992px) {
+        font-size: 22px;
+        line-height: 25.78px;
+        text-align: left;
+      }
+    }
   }
 }
 </style>

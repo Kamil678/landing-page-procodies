@@ -1,26 +1,20 @@
 <template>
   <div class="carousel-container">
-    <div class="main-image">
+    <figure class="main-image">
       <img
         :src="activeImage.src"
         :alt="activeImage.alt"
-        width="481"
-        height="480"
         :data-id="activeImage.id"
       />
-    </div>
+    </figure>
     <div class="other-images">
       <button
         v-for="image in images.filter((image) => image.id !== activeImage.id)"
+        :key="image.id"
         @click="onChangeImage"
+        :aria-label="`Change image to ${image.alt}`"
       >
-        <img
-          :src="image.src"
-          :alt="image.alt"
-          width="132"
-          height="132"
-          :data-id="image.id"
-        />
+        <img :src="image.src" :alt="image.alt" :data-id="image.id" />
       </button>
     </div>
     <div class="value-container">
@@ -58,14 +52,30 @@ const images = [
 
 const activeImage = ref(images[0]);
 
-const onChangeImage = (e) => {
-  activeImage.value = images[e.target.getAttribute("data-id") - 1];
+const onChangeImage = (e: Event) => {
+  const target = e.target as HTMLElement;
+  const id = target.getAttribute("data-id");
+  if (id) {
+    activeImage.value = images[parseInt(id) - 1];
+  }
 };
 </script>
 
 <style lang="scss">
 .carousel-container {
   position: relative;
+
+  .main-image {
+    img {
+      width: 301px;
+      height: 300px;
+
+      @media (min-width: 768px) {
+        width: 481px;
+        height: 480px;
+      }
+    }
+  }
 
   .other-images {
     width: 100%;
@@ -77,30 +87,50 @@ const onChangeImage = (e) => {
       background-color: transparent;
       border: none;
       cursor: pointer;
+
+      img {
+        width: 100px;
+        height: 100px;
+
+        @media (min-width: 992px) {
+          width: 132px;
+          height: 132px;
+        }
+      }
     }
   }
 
   .value-container {
-    width: 160px;
-    height: 160px;
+    width: 120px;
+    height: 120px;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -16px;
+    right: -5px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px 0;
+    gap: 8px;
     padding: 46px 20px 45px 20px;
     border-radius: 50%;
     background-color: #006340;
     color: #fff;
 
+    @media (min-width: 992px) {
+      width: 160px;
+      height: 160px;
+    }
+
     .current-value {
-      font-size: 38px;
+      font-size: 28px;
       font-weight: 700;
-      line-height: 44.53px;
+      line-height: 34px;
       text-align: center;
+
+      @media (min-width: 992px) {
+        font-size: 38px;
+        line-height: 44.53px;
+      }
     }
 
     .original-value {
