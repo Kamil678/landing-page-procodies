@@ -91,6 +91,8 @@ const onChangeImage = (e: Event) => {
       img {
         width: 100px;
         height: 100px;
+        border: 0.93px solid #006340;
+        border-radius: 15px;
 
         @media (min-width: 992px) {
           width: 132px;
