@@ -43,7 +43,12 @@ footer {
   }
 
   .credit-cards-container {
+    height: auto;
     text-align: center;
+
+    @media (min-width: 992px) {
+      height: 40px;
+    }
   }
 }
 </style>

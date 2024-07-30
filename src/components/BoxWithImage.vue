@@ -45,6 +45,12 @@ section.box-with-image-container {
   }
 
   .image-container {
+    height: 300px;
+
+    @media (min-width: 768px) {
+      height: 583px;
+    }
+
     img {
       border-radius: 30px;
       width: 300px;
